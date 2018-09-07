@@ -20,14 +20,21 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vert">
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VulkanTutorialFollowAlong.rc">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="shader.frag">
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="shaders\frag.hlsl">
       <Filter>Resource Files</Filter>
-    </None>
-    <None Include="compile.bat">
+    </FxCompile>
+    <FxCompile Include="shaders\vert.hlsl">
       <Filter>Resource Files</Filter>
-    </None>
+    </FxCompile>
   </ItemGroup>
 </Project>

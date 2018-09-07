@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C61BA954-EAE0-49F3-859E-A0AD9F2E4A94}</ProjectGuid>
     <RootNamespace>VulkanTutorialFollowAlong</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -134,11 +134,39 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="compile.bat" />
-    <None Include="shader.frag" />
-    <None Include="shader.vert" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VulkanTutorialFollowAlong.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\frag.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="shaders\vert.hlsl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <CompileScript Include="'$(ProjectDir)shaders\compile.bat'" />
+    </ItemGroup>
+    <Message Importance="high" Text="Compiling Shaders! - @(CompileScript) " />
+    <Exec Command="copy vert.hlsl shader.vert" WorkingDirectory="$(ProjectDir)shaders" />
+    <Exec Command="copy frag.hlsl shader.frag" WorkingDirectory="$(ProjectDir)shaders" />
+    <Exec Command="..\Libraries\VulkanSDK\Bin32\glslangValidator.exe -V shader.vert -o vert.spv" WorkingDirectory="$(ProjectDir)shaders" />
+    <Exec Command="..\Libraries\VulkanSDK\Bin32\glslangValidator.exe -V shader.frag -o frag.spv" WorkingDirectory="$(ProjectDir)shaders" />
+    <Exec Command="del shader.vert" WorkingDirectory="$(ProjectDir)shaders" />
+    <Exec Command="del shader.frag" WorkingDirectory="$(ProjectDir)shaders" />
+    <ItemGroup>
+      <ShadersSrc Include="$(ProjectDir)\shaders\*.spv" />
+    </ItemGroup>
+    <Message Importance="high" Text="Copying Shaders! - @(ShadersSrc)" />
+    <Copy SourceFiles="@(ShadersSrc)" DestinationFolder="$(TargetDir)shaders\" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" />
+  </Target>
 </Project>
