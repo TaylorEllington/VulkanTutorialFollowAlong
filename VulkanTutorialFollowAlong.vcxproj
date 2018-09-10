@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;$(SolutionDir)Libraries\stb_image\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;$(SolutionDir)Libraries\stb_image</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\VulkanSDK\Lib;$(SolutionDir)Libraries\glfw-3.2.1\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -121,7 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;$(SolutionDir)Libraries\stb_image</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -168,5 +168,10 @@
     </ItemGroup>
     <Message Importance="high" Text="Copying Shaders! - @(ShadersSrc)" />
     <Copy SourceFiles="@(ShadersSrc)" DestinationFolder="$(TargetDir)shaders\" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" />
+    <Message Importance="high" Text="Copying Textures!" />
+    <ItemGroup>
+      <Textures Include="$(ProjectDir)textures\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(Textures)" DestinationFolder="$(TargetDir)textures\" OverwriteReadOnlyFiles="true" SkipUnchangedFiles="false" />
   </Target>
 </Project>
