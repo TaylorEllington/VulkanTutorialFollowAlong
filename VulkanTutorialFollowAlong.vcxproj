@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\VulkanSDK\Include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\glfw-3.2.1\include;$(SolutionDir)Libraries\stb_image\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\VulkanSDK\Lib;$(SolutionDir)Libraries\glfw-3.2.1\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

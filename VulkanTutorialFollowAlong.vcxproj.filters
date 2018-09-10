@@ -30,11 +30,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="shaders\frag.hlsl">
-      <Filter>Resource Files</Filter>
-    </FxCompile>
-    <FxCompile Include="shaders\vert.hlsl">
-      <Filter>Resource Files</Filter>
-    </FxCompile>
+    <None Include="shaders\frag.hlsl" />
+    <None Include="shaders\vert.hlsl" />
   </ItemGroup>
 </Project>
